@@ -32,4 +32,4 @@ docker build -t pikeszfish/simplest-cni:v0.1.0 .
 - [kube-controller-manager](https://kubernetes.io/docs/reference/generated/kube-controller-manager/)
 
 ## License
-simplest-cni is available under the Apache 2.0 license. See the [LICENSE](LICENSE) file for details.
+simplest-cni is available under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for details.
