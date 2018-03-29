@@ -16,13 +16,12 @@ import (
 	"k8s.io/api/core/v1"
 )
 
-const (
-	networkTypeBridge = "bridge"
-)
-
 var (
-	ErrNoPodCIDR       = errors.New("no pod CIDR found")
-	ErrNoPodAddress    = errors.New("no pod address found")
+	// ErrNoPodCIDR it may happen when kube-controller-manager not update pod CIDR for a new node that in time.
+	ErrNoPodCIDR = errors.New("no pod CIDR found")
+	// ErrNoPodAddress if a node does not have a address
+	ErrNoPodAddress = errors.New("no pod address found")
+	// ErrCNIConfNonexist if no .conf/.conflist/.json file found in /etc/cni/net.d/
 	ErrCNIConfNonexist = errors.New("cni conf nonexist")
 )
 
@@ -112,7 +111,8 @@ func (h *Handler) OnAdd(obj interface{}) {
 		// self route use LINK
 		r.Scope = unix.RT_SCOPE_LINK
 	}
-
+	// TODO
+	// check if a route exist already.
 	// allRoutes, err := netlink.RouteList()
 	// if err != nil {
 	// 	log.Errorf("RouteList failed")
@@ -124,7 +124,6 @@ func (h *Handler) OnAdd(obj interface{}) {
 	// 		return
 	// 	}
 	// }
-	// if netlink.RouteList()
 	if err = netlink.RouteAdd(r); err != nil {
 		log.Errorf("adding route %+v to %s failed: %+v", r, node.Name, err)
 	}

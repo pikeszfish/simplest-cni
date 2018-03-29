@@ -19,11 +19,9 @@ import (
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/cache"
 	"k8s.io/client-go/tools/clientcmd"
-	// "k8s.io/apimachinery/pkg/util/runtime"
-	// "k8s.io/client-go/util/workqueue"
 )
 
-var buildstamp = "no timestamp set"
+var buildstamp = "please build with -ldflags \"-X main.buildstamp=`date '+%Y-%m-%d_%I:%M:%S'`\""
 
 func main() {
 	fmt.Println("My buildstamp is:", buildstamp)
