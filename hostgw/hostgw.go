@@ -124,6 +124,7 @@ func (h *Handler) OnAdd(obj interface{}) {
 	// 		return
 	// 	}
 	// }
+	log.Infof("RouteAdd %+v to %s", r, node.Name)
 	if err = netlink.RouteAdd(r); err != nil {
 		log.Errorf("adding route %+v to %s failed: %+v", r, node.Name, err)
 	}
@@ -146,7 +147,7 @@ func (h *Handler) OnDelete(obj interface{}) {
 		return
 	}
 
-	log.Infof("deleting route %+v to %s", r, node.Name)
+	log.Infof("RouteDel %+v to %s", r, node.Name)
 	if err = netlink.RouteDel(r); err != nil {
 		log.Errorf("deleting route %+v to %s failed: %+v", r, node.Name, err)
 	}
