@@ -24,5 +24,5 @@ COPY --from=builder /dist/portmap /opt/cni/bin/
 
 RUN apk add --update bash
 
-COPY --from=builder /dist/simplest-cni /
 COPY --from=builder /dist/install-cni.sh /
+COPY --from=builder /dist/simplest-cni /

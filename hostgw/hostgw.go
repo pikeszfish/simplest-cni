@@ -108,6 +108,13 @@ func (h *Handler) OnAdd(obj interface{}) {
 			log.Errorf("generateCNIConfig err %+v", err)
 			return
 		}
+		br, err := netlink.LinkByName("br0")
+		if err != nil {
+			log.Error(err)
+			return
+		}
+		r.LinkIndex = br.Attrs().Index
+		r.Gw = nil
 		// self route use LINK
 		r.Scope = unix.RT_SCOPE_LINK
 	}
